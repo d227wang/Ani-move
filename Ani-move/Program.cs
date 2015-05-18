@@ -5,6 +5,40 @@ using System.Linq;
 
 class Animove
 {
+    static void log(string logMessage, int warnLevel = 0)
+    {
+        // warnLevel denotes the "type" of log message to be displayed, options are as follows:
+        // 0 = Green; stuff's working
+        // 1 = Yellow; Encountered a recoverable exception
+        // 2 = Red; Unrecoverable exception, unhandled exception
+        // For simplicity's sake, this is an optional parameter, with 0 (green) being the default if nothing is passed
+
+        // header that will be displayed in front of every log
+        string header = "[Ani-move] " + DateTime.Now.ToString( "h:mm" ) + " | ";
+
+        if (warnLevel == 2)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine( header + logMessage );
+            Console.ResetColor( );
+        }
+
+        else if (warnLevel == 1)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine( header + logMessage );
+            Console.ResetColor( );
+        }
+
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine( header + logMessage );
+            Console.ResetColor( );
+        }
+        
+    }
+
     static void animeProcess( string fileName, out string Title, out string Episode )
     {
         fileName.Replace( "_", " " );
@@ -33,7 +67,7 @@ class Animove
     {
         Console.WriteLine( "[Ani-move]" );
         Console.WriteLine( "Source code available at github.com/moonrobin" );
-        Console.WriteLine( "Build 1.0.1");
+        Console.WriteLine( "Build 1.0.2");
         Console.WriteLine( "=============================================");
         Console.WriteLine( );
 
@@ -88,6 +122,15 @@ class Animove
             var allFiles = from file in System.IO.Directory.EnumerateFiles( System.IO.Directory.GetCurrentDirectory( ), "[*- *", System.IO.SearchOption.AllDirectories )
                            select file;
             int fileCount = allFiles.Count( );
+
+            // Will display a message if no files are found, and then exit
+            if(fileCount == 0)
+            {
+                log("No anime files found! Maybe wrong directory?", 1 );
+                Console.ReadKey( );
+                Environment.Exit( 0 );
+            }
+
             Console.Write( "Identified {0} files to be moved, continue? Y/N ", fileCount );
             input = Console.ReadLine( );
             while (!(validInputs.Contains( input )))
@@ -101,30 +144,39 @@ class Animove
                 Environment.Exit( 0 );
             }
 
+            log( string.Format( "Beginning main batch process on {0} files", fileCount ));
+
             foreach (var file in allFiles)
             {
                 String fileName = System.IO.Path.GetFileName( file );
                 String Title;
                 String Episode;
-
                 animeProcess( fileName, out Title, out Episode );
+                log( string.Format( "Working on {0} - {1}", Title, Episode ) );
                 String destinationDirectory = animeDirectory + "\\" + Title;
+
                 if (!(System.IO.Directory.Exists( destinationDirectory )))
                 {
+                    log( string.Format( "Discovered that {0} doesn't exist. Creating", destinationDirectory ) );
                     System.IO.Directory.CreateDirectory( destinationDirectory );
-                    Console.WriteLine( "Created {0}", destinationDirectory );
+                    log(string.Format("Created {0}", destinationDirectory));
                 }
+
                 String destinationPath = destinationDirectory + "\\" + Title + " - " + Episode + System.IO.Path.GetExtension( file );
+                log( string.Format( "Moving {0} - {1}...", Title, Episode ) );
                 System.IO.File.Move( @file, @destinationPath );
+                log(string.Format("Successfully moved {0} - {1}", Title, Episode));
+
             }
+
+            log( string.Format( "Successfully moved {0} files. Press any key to exit", fileCount ) );
+            Console.ReadKey( );
         }
         catch (Exception e)
         {
-            Console.WriteLine( );
-            Console.WriteLine( "It dun work." );
-            Console.WriteLine( e.ToString( ) );
+            log("Unhandled exception occured! Press any key to exit");
+            log( e.ToString( ) , 2);
+            Console.ReadKey( );
         }
     }
 }
-
-

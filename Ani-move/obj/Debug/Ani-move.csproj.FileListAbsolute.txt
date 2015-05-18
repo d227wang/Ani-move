@@ -4,3 +4,9 @@ E:\Users\Robin\git\Ani-move\Ani-move\Ani-move\bin\Debug\Ani-move.pdb
 E:\Users\Robin\git\Ani-move\Ani-move\Ani-move\obj\Debug\Ani-move.csprojResolveAssemblyReference.cache
 E:\Users\Robin\git\Ani-move\Ani-move\Ani-move\obj\Debug\Ani-move.exe
 E:\Users\Robin\git\Ani-move\Ani-move\Ani-move\obj\Debug\Ani-move.pdb
+E:\Users\Robin\git\Ani-move\Ani-move\bin\Debug\Ani-move.exe.config
+E:\Users\Robin\git\Ani-move\Ani-move\obj\Debug\Ani-move.exe
+E:\Users\Robin\git\Ani-move\Ani-move\obj\Debug\Ani-move.pdb
+E:\Users\Robin\git\Ani-move\Ani-move\bin\Debug\Ani-move.exe
+E:\Users\Robin\git\Ani-move\Ani-move\bin\Debug\Ani-move.pdb
+E:\Users\Robin\git\Ani-move\Ani-move\obj\Debug\Ani-move.csprojResolveAssemblyReference.cache
