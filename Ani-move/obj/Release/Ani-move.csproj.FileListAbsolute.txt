@@ -3,3 +3,8 @@ E:\Users\Robin\git\Ani-move\Ani-move\Ani-move\bin\Release\Ani-move.exe
 E:\Users\Robin\git\Ani-move\Ani-move\Ani-move\bin\Release\Ani-move.pdb
 E:\Users\Robin\git\Ani-move\Ani-move\Ani-move\obj\Release\Ani-move.exe
 E:\Users\Robin\git\Ani-move\Ani-move\Ani-move\obj\Release\Ani-move.pdb
+E:\Users\Robin\git\Ani-move\Ani-move\bin\Release\Ani-move.exe.config
+E:\Users\Robin\git\Ani-move\Ani-move\obj\Release\Ani-move.exe
+E:\Users\Robin\git\Ani-move\Ani-move\obj\Release\Ani-move.pdb
+E:\Users\Robin\git\Ani-move\Ani-move\bin\Release\Ani-move.exe
+E:\Users\Robin\git\Ani-move\Ani-move\bin\Release\Ani-move.pdb
